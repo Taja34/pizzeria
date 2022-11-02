@@ -8,23 +8,25 @@ import Carrito from "../carrito/Carrito";
 import Home from "../Home/Home";
 import Login from "../sesion/Login";
 import Register from "../sesion/Register";
-
-
+import Header from "../Home/Header/Header";
+export const AppContext = createContext([])
 
 const Router = () => {
-   
-    return ( 
 
+    const [pizzas, setPizzas] = useState({})
+    return ( 
+<AppContext.Provider value={{pizzas,setPizzas}}>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="login" element={<Login />} />
+            <Route  element={<Header/>} >
+                <Route path="home" element={<Home />} />
+            </Route>
+                <Route path="/" element={<Login />} />
                 <Route path="register"  element={<Register />} />
                 <Route path="carrito"  element={<Carrito />} />
-                
             </Routes>
         </BrowserRouter>
-   
+        </AppContext.Provider>
     )
 }
 
