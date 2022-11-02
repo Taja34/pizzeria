@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { AppContext } from '../routes/Router'
+import Footer from './footer/Footer';
 import { getPizzas } from './service/pizzas'
 
 const Home = () => {
@@ -12,6 +13,24 @@ descuento:'45% OFF'
   descuento:'25% OFF'
     }
   ]
+  let pizita =[
+    {
+      id: 1,
+        name: "Pizza-HAWAINA",
+        precio: 10000,
+        img: "https://t1.rg.ltmcdn.com/es/posts/1/2/6/original_pizza_hawaiana_50621_600.jpg",
+        img2: "https://cdn2.cocinadelirante.com/sites/default/files/styles/gallerie/public/images/2019/11/como-hacer-pizza-hawaiana.jpg",
+        img3: "https://napolicartagena.com/wp-content/uploads/2022/01/La-Pizza-Hawaiana-de-Canada.jpg"
+    },
+    {
+      id: 2,
+      name: "Pizza-POLLO",
+      "precio": 15000,
+      img: "https://i.blogs.es/40c9b7/pizza-casera-champinon/840_560.jpg",
+      "img2": "http://assets.kraftfoods.com/recipe_images/opendeploy/136150_640x428.jpg",
+      "img3": "https://images.hola.com/imagenes/cocina/recetas/20200123158802/receta-pizza-pollo-barbacoa/0-772-922/pizza-pollo-adobe-m.jpg"
+      }
+  ]
   useEffect(() => {
 searchPizzas()
     
@@ -22,6 +41,7 @@ await setPizzas(infopizzas)
 console.log(pizzas)
  }
   return (
+    <>
     <aside className='body'>
       <article className='body__header'>
     <div className='body__title'> <b>Pizzas disponibles </b></div>
@@ -43,53 +63,38 @@ console.log(pizzas)
 
    <article>
     <section>
-
-
-        <div>
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src='' class="d-block w-100" alt="..."/>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
+{
+  pizita.map((element,index)=>(
+    <>
+    <div className='d'>
+    <div className='slider-title'>
+      <p>{element.name}</p>
+      <p>${element.precio} COP</p>
+    
     </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="..."/>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
     </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="..."/>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
+    <div className='slider-container' key={index}>
+    <div className='backgraund'></div>
+    <div className='backgraund1'></div>
+    <div className='backgraund2'></div>
+    <img src={element.img} /> 
+ 
+    <img src={element.img2} /> 
+    <img src={element.img3} /> 
+   
     </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-      </div>
-     
+  
+    </>
+  ))
+  
+}
+  
       
     </section>
    </article>
     </aside>
+    <Footer/>
+    </>
   )
 }
 

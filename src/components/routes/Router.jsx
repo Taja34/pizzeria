@@ -9,6 +9,8 @@ import Home from "../Home/Home";
 import Login from "../sesion/Login";
 import Register from "../sesion/Register";
 import Header from "../Home/Header/Header";
+import Footer from "../Home/footer/Footer";
+import Buscador from "../Home/Buscador";
 export const AppContext = createContext([])
 
 const Router = () => {
@@ -19,7 +21,10 @@ const Router = () => {
         <BrowserRouter>
             <Routes>
             <Route  element={<Header/>} >
+            <Route path="/buscar" element={<Buscador />} />
                 <Route path="home" element={<Home />} />
+                <Route  element={<Footer/>} />
+        
             </Route>
                 <Route path="/" element={<Login />} />
                 <Route path="register"  element={<Register />} />

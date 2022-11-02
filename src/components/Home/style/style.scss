@@ -1,25 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alata&family=Barlow+Condensed&family=Barlow:wght@300&family=Bellefair&family=Josefin+Sans:wght@500&family=Karla&family=Roboto:wght@400;600&display=swap');
-// Functions first
-@import "../node_modules/bootstrap/scss/functions";
 
-// Variable overrides second
-$primary: #900;
-$enable-shadows: true;
-$prefix: "mo-";
 
-// Required Bootstrap imports
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/maps";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/bootstrap/scss/root";
 
-// Optional components
-@import "../node_modules/bootstrap/scss/utilities";
-@import "../node_modules/bootstrap/scss/reboot";
-@import "../node_modules/bootstrap/scss/containers";
-@import "../node_modules/bootstrap/scss/grid";
-@import "../node_modules/bootstrap/scss/helpers";
-@import "../node_modules/bootstrap/scss/utilities/api";
 *{
     font-family: 'Roboto', sans-serif;
     padding: 0;
@@ -62,7 +44,7 @@ header{
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
-    
+    height: max-content;
     background-color: #FEF0EF;
     &__title{
         font-family: 'Roboto', sans-serif;
@@ -76,9 +58,9 @@ header{
         color: #F61B50;
     }
     &__contcupon{
-        width: 500px;
+        width: 450px;
         height: max-content;
-       overflow-x: scroll;
+       overflow-x: auto;
        overflow-y: hidden;
        gap: 20px;
         display: flex;
@@ -114,4 +96,75 @@ header{
 
 .prueba{
     overflow-x: auto;
+    padding-bottom: 20px;
+}
+.slider-container{
+    display: flex;
+    width: 350px;
+    height: 220px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    position: relative;
+    img{
+        scroll-snap-align: center;
+        border-radius: 20px;
+        flex: 0 0 100%;
+        width: 380px;
+        height: 200px;
+        object-fit: cover;
+}
+}
+.backgraund{
+    position: absolute;
+    z-index: 2;
+    border-radius: 20px;
+    width: 1050px;
+    height: 200px;
+    background: linear-gradient(rgba(255, 255, 255, 0.1), #000000); 
+}
+.slider-title{
+    position: absolute;
+    z-index: 3;
+    color: #fff;
+    bottom: 20px;
+    width: 95%;
+
+    display: flex;
+    justify-content: space-between;
+    left: 2vw;
+    
+    bottom: -150px;
+}
+.d{
+    position: relative;
+}
+footer{
+  width: 100%;
+  background-color: #FEF0EF;
+}
+.footer{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+}
+.busqueda{
+    width: 100%;
+justify-content: center;
+ background-color: #FEF0EF;
+ display: flex;
+ align-items: center;
+    &__input{
+        border: none;
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        margin-top: 20px;
+width: 80%;
+    }
+}
+.lupa{
+    margin-top: 20px;
+    margin-left: -40px;
+    width: 20px;
+    height: 20px;
 }
