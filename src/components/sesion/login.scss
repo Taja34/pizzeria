@@ -4,7 +4,7 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/pizaa.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    height: 100%;
 }
 
 .input--error {
@@ -55,5 +55,11 @@ form {
 
 .cuenta {
     font-size: 14px;
+}
+.register {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
