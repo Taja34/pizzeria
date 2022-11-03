@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 
-const URL_API = 'http://localhost:3004';
+const URL_API = 'https://pizzeria-back.onrender.com';
 
 
 export const getPizzas = async () => {
