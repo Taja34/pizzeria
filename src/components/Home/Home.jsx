@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../routes/Router'
 import Footer from './footer/Footer';
 import { getPizzas } from './service/pizzas'
 
 const Home = () => {
-  const{pizzas, setPizzas} = useContext(AppContext);
+  const navigate = useNavigate();
+  const[pizzas, setPizzas] = useState([]);
   let  cupones = [
     {name:'Cupones para Frontends',
 descuento:'45% OFF'
@@ -13,24 +15,7 @@ descuento:'45% OFF'
   descuento:'25% OFF'
     }
   ]
-  let pizita =[
-    {
-      id: 1,
-        name: "Pizza-HAWAINA",
-        precio: 10000,
-        img: "https://t1.rg.ltmcdn.com/es/posts/1/2/6/original_pizza_hawaiana_50621_600.jpg",
-        img2: "https://cdn2.cocinadelirante.com/sites/default/files/styles/gallerie/public/images/2019/11/como-hacer-pizza-hawaiana.jpg",
-        img3: "https://napolicartagena.com/wp-content/uploads/2022/01/La-Pizza-Hawaiana-de-Canada.jpg"
-    },
-    {
-      id: 2,
-      name: "Pizza-POLLO",
-      "precio": 15000,
-      img: "https://i.blogs.es/40c9b7/pizza-casera-champinon/840_560.jpg",
-      "img2": "http://assets.kraftfoods.com/recipe_images/opendeploy/136150_640x428.jpg",
-      "img3": "https://images.hola.com/imagenes/cocina/recetas/20200123158802/receta-pizza-pollo-barbacoa/0-772-922/pizza-pollo-adobe-m.jpg"
-      }
-  ]
+  
   useEffect(() => {
 searchPizzas()
     
@@ -39,7 +24,11 @@ searchPizzas()
 let infopizzas =await getPizzas()
 await setPizzas(infopizzas)
 console.log(pizzas)
- }
+ } 
+ const redireccion =({target})=>{
+  console.log(target.id)
+navigate(`/pizzas?name=${target.id}`)
+}
   return (
     <>
     <aside className='body'>
@@ -51,10 +40,15 @@ console.log(pizzas)
   
    {
     cupones.map((element, index)=>(
+      <>
+      <div className='relativo'> 
+      <div className='bacgrounfcupon'></div>
       <div className='body__cupon' key={index}>
       <p>{element.name}</p>
       <p className='body__cupon__descuento'>{element.descuento}</p>
     </div>
+    </div>
+</>
     ))
 
    }
@@ -62,19 +56,19 @@ console.log(pizzas)
    </div>
 
    <article>
-    <section>
+    <section className='center'>
 {
-  pizita.map((element,index)=>(
+  pizzas.map((element,index)=>(
     <>
     <div className='d'>
     <div className='slider-title'>
       <p>{element.name}</p>
-      <p>${element.precio} COP</p>
+      <p className='rojo'>${element.precio} COP</p>
     
     </div>
     </div>
     <div className='slider-container' key={index}>
-    <div className='backgraund'></div>
+    <div className='backgraund' onClick={redireccion} id={element.name}></div>
     <div className='backgraund1'></div>
     <div className='backgraund2'></div>
     <img src={element.img} /> 
@@ -93,7 +87,7 @@ console.log(pizzas)
     </section>
    </article>
     </aside>
-    <Footer/>
+   
     </>
   )
 }

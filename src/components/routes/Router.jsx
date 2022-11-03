@@ -11,6 +11,7 @@ import Register from "../sesion/Register";
 import Header from "../Home/Header/Header";
 import Footer from "../Home/footer/Footer";
 import Buscador from "../Home/Buscador";
+import Detalles from "../Home/Detalles";
 export const AppContext = createContext([])
 
 const Router = () => {
@@ -20,15 +21,22 @@ const Router = () => {
 <AppContext.Provider value={{pizzas,setPizzas}}>
         <BrowserRouter>
             <Routes>
+            <Route  element={<Footer/>} >
             <Route  element={<Header/>} >
-            <Route path="/buscar" element={<Buscador />} />
+            
+            <Route path="buscar" element={<Buscador />} />
                 <Route path="home" element={<Home />} />
-                <Route  element={<Footer/>} />
+
+                
+        </Route>
         
             </Route>
+            <Route path=":pizza" element={<Detalles />} />
+          
                 <Route path="/" element={<Login />} />
                 <Route path="register"  element={<Register />} />
                 <Route path="carrito"  element={<Carrito />} />
+            
             </Routes>
         </BrowserRouter>
         </AppContext.Provider>
