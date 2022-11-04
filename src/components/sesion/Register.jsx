@@ -9,7 +9,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from 'axios';
 import Swal from "sweetalert2";
 
-// const URL_API = 
+const URL_API = 'https://pizzeria-back.onrender.com/usuarios';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -18,17 +18,24 @@ const Register = () => {
 
   const onSubmit = async(data) => {
     console.log(data)
-    const urlUser = `${URL_API}?email=${data.email}&password=${data.password}&name=${data.name}`;
-    const login = await axios.get(urlUser);
-    const loginValidation = login.data;
+    const url = `${URL_API}?email=${data.email}&contraseña=${data.contraseña}&nombre=${data.nombre}`;
+    const user = await axios.get(url);
+    const userCheck = user.data;
 
-    if (loginValidation != '') {
+    if (userCheck != '') {
       Swal.fire (
-        'El usuario ya existe'
+        'Oops',
+        'El usuario ya existe', 
+        'error'
       )
     } else {
-      await axios.post(urlUser, data);
-      navigate('login');
+      await axios.post(url, data);
+      Swal.fire (
+        'Usuario creado con éxito', 
+        '',
+        'success'
+      )
+      navigate('/');
     }
   }
 
@@ -48,12 +55,12 @@ const Register = () => {
           <input
             type="text"
             placeholder="Nombre"
-            {...register('name', {
+            {...register('nombre', {
               required: true
             })}
-            className={errors.name ? 'form-control input--error' : 'form-control'}
+            className={errors.nombre ? 'form-control input--error' : 'form-control'}
           />
-          {errors.name && <p>Este campo es obligatorio</p>}
+          {errors.nombre && <p>Este campo es obligatorio</p>}
         </label>
             <label className='mb-4 input-group'>
               <span class="input-group-text text-light">
@@ -62,12 +69,12 @@ const Register = () => {
               <input
                 type="email"
                 placeholder="Correo"
-                {...register('user', {
+                {...register('email', {
                   required: true
                 })}
-                className={errors.user ? 'form-control input--error' : 'form-control'}
+                className={errors.email ? 'form-control input--error' : 'form-control'}
               />
-              {errors.user && <p>Este campo es obligatorio</p>}
+              {errors.email && <p>Este campo es obligatorio</p>}
             </label>
 
             <label className='mb-4 input-group '>
@@ -77,18 +84,18 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Contraseña"
-                {...register('password', {
+                {...register('contraseña', {
                   required: true
                 })}
-                className={errors.password ? 'form-control input--error' : 'form-control'}
+                className={errors.contraseña ? 'form-control input--error' : 'form-control'}
               />
-              {errors.password && <p>Este campo es obligatorio</p>}
+              {errors.contraseña && <p>Este campo es obligatorio</p>}
             </label>
           <div className='d-grid col-12'>
             <button className='btn btn-light mb-3 py-3 fw-semibold' type='submit'>Registrarse</button>
           </div>
           <p className='mt-3 mb-0 cuenta'>¿Ya tienes cuenta?</p>
-          <h6>Inicia sesión</h6>
+          <h6 onClick={() => navigate('/')}className='register'>Inicia sesión</h6>
         </form>
       </div>
     </>

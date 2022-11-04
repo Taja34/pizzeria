@@ -68,7 +68,7 @@ navigate(`/pizzas?name=${target.id}`)
 
     <>
     <div className='d'   >
-    <div className='slider-title' >
+    <div className='slider-title' onClick={redireccion} id={element.name}>
       <p>{element.name}</p>
       <p className='rojo'>${element.precio} COP</p>
     

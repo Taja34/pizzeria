@@ -12,13 +12,17 @@ import Header from "../Home/Header/Header";
 import Footer from "../Home/footer/Footer";
 import Buscador from "../Home/Buscador";
 import Detalles from "../Home/Detalles";
+import ProcesoPedido from "../carrito/ProcesoPedido";
 export const AppContext = createContext([])
+
 
 const Router = () => {
 
     const [pizzas, setPizzas] = useState({})
+    const[contador,setContador] = useState(1);
+    const [usuarios, setUsuarios] = useState([])
     return ( 
-<AppContext.Provider value={{pizzas,setPizzas}}>
+<AppContext.Provider value={{pizzas,setPizzas,usuarios,setUsuarios,contador,setContador}}>
         <BrowserRouter>
             <Routes>
             <Route  element={<Footer/>} >
@@ -36,6 +40,7 @@ const Router = () => {
                 <Route path="/" element={<Login />} />
                 <Route path="register"  element={<Register />} />
                 <Route path="carrito"  element={<Carrito />} />
+                <Route path="pedido"  element={<ProcesoPedido />} />
             
             </Routes>
         </BrowserRouter>

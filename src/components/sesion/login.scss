@@ -20,6 +20,7 @@ form {
     }
     & img {
         width: 30%;
+        filter: invert(98%) sepia(44%) saturate(2%) hue-rotate(49deg) brightness(107%) contrast(101%);
     }
 
     & input {
@@ -55,5 +56,11 @@ form {
 
 .cuenta {
     font-size: 14px;
+}
+.register {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 

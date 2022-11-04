@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { getComentarios, getPizzasFiltradas, getUsuarios } from './service/pizzas';
 import flecha from './img/flecha.png'
 import estrella from './img/estrella.png'
 import canasta from './img/canasta.png'
 import Footer from './footer/Footer';
+import { AppContext } from '../routes/Router';
 
 const Detalles = () => {
   const navigate = useNavigate();
     const[params,setParams] = useSearchParams();
     const[pizza,setPizza] = useState([]);
-    const[contador,setContador] = useState(0);
+    
     const[usuarios,setUsuarios] = useState([]);
    
     
     const[comentarios,setComentarios] = useState([]);
-
+    const {pizzas, setPizzas} = useContext(AppContext)
+    const {contador, setContador} = useContext(AppContext)
 
   useEffect(() => {
     let f =  params.get('name') ?? '';
@@ -36,6 +38,7 @@ console.log(reseñas)
  setPizza(pizzaf)
  setComentarios(reseñas)
  setUsuarios(usuario)
+ setPizzas(pizzaf)
 
 }
 const back =()=>{
@@ -49,7 +52,7 @@ console.log(id)
   if(id==='mas'){
     setContador(contador + 1)
   }else if(id==='menos'){
-    if(contador===0){
+    if(contador===1){
 
     }else(setContador(contador-1))
   }
@@ -98,7 +101,7 @@ const pagar = ()=>{
 </article>
 <article className='cont__detalles__descripcion'>
   <b>Descripción</b>
-  <p>
+  <p >
     {element.descripcion}
   </p>
 
@@ -161,7 +164,7 @@ puntaje= '⭐⭐⭐⭐⭐'
   </div>
 </article>
 <article>
-  <div className='cont__pagar__pagar'>Pagar</div>
+  <Link to='/carrito' className='cont__pagar__pagar'>Pagar</Link>
 </article>
 </aside>
 </>

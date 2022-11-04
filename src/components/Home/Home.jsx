@@ -7,6 +7,8 @@ import { getPizzas } from './service/pizzas'
 const Home = () => {
   const navigate = useNavigate();
   const[pizzas, setPizzas] = useState([]);
+  const{usuarios, setusuarios} = useContext(AppContext)
+  console.log(usuarios.length === 0)
   let  cupones = [
     {name:'Cupones para Frontends',
 descuento:'45% OFF'
@@ -16,13 +18,14 @@ descuento:'45% OFF'
     }
   ]
   
+
   useEffect(() => {
 searchPizzas()
     
    }, [])
  const searchPizzas= async()=>{
 let infopizzas =await getPizzas()
-await setPizzas(infopizzas)
+ setPizzas(infopizzas)
 console.log(pizzas)
  } 
  const redireccion =({target})=>{
@@ -61,7 +64,7 @@ navigate(`/pizzas?name=${target.id}`)
   pizzas.map((element,index)=>(
     <>
     <div className='d'>
-    <div className='slider-title'>
+    <div className='slider-title' onClick={redireccion} id={element.name}>
       <p>{element.name}</p>
       <p className='rojo'>${element.precio} COP</p>
     
